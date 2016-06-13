@@ -1,0 +1,71 @@
+( function( global ) {
+  'use strict';
+
+
+  angular
+    .module( 'lng' )
+    .config( routing );
+
+  function routing( $stateProvider ) {
+
+    // Hacking with labels
+    // Force hiding them when consulting vessel track.
+    var labelsVisibilityStateBackup;
+
+    $stateProvider
+      .state( 'main.map.vessel', {
+        abstract: true,
+        url: '^/vessel/:itemId?zoom&startDate&endDate',
+
+        resolve: {
+          vessel: global.itemResolvers.vesselResolver
+        },
+
+        templateUrl: 'app/main/map/vessel/vessel.html',
+        controller: 'VesselController as vm',
+
+        onEnter: function( vessel, LNGMapService, SettingsService, SidePanelsService ) {
+          var vesselMarker = LNGMapService.getLNGMap().mapElementsStore.getVesselMarkerById( vessel.id );
+
+          // Backup original state of label visibility
+          labelsVisibilityStateBackup = SettingsService.map.labelVisibility;
+
+          if ( vesselMarker ) {
+            // Sometimes, mouseout event form vessel marker is not triggered,
+            // hence the need to disable 'hover' style manually.
+            // ObjectCascade mecanism probably not 100% reliable...
+            vesselMarker.style.disable( 'hovered' );
+            vesselMarker.style.enable(
+              global.mapElementStyles.vessels.large,
+              global.mapElementStyles.Priority.ITEM_PAGE
+            );
+            // Turn off labels
+            // Trigger $scope.watch in lng-map-directive...
+            SettingsService.map.labelVisibility = false;
+          }
+
+          SidePanelsService.openRightPanel();
+        },
+        onExit: function( vessel, LNGMapService, SettingsService, SidePanelsService ) {
+          var vesselMarker = LNGMapService.getLNGMap().mapElementsStore.getVesselMarkerById( vessel.id );
+          if ( vesselMarker ) {
+            vesselMarker.style.disable( 'large' );
+          }
+
+          // Restore original state of labels Visibility
+          SettingsService.map.labelVisibility = labelsVisibilityStateBackup;
+
+          SidePanelsService.closeRightPanel();
+        }
+      } )
+
+      .state( 'main.map.vessel.defaultTab', {
+        url: '',
+        controller: function( $state ) {
+          $state.go( '^.activity' );
+        }
+      } );
+
+  }
+
+} )( this );

@@ -1,0 +1,37 @@
+( function( global ) {
+  'use strict';
+
+
+  angular
+    .module( 'lng' )
+    .config( routing );
+
+  function routing( $stateProvider ) {
+
+    $stateProvider
+      .state( 'main.map.vessel', {
+        abstract: true,
+        url: '^/vessel/:itemId?zoom&startDate&endDate',
+
+        resolve: {
+          vessel: global.itemResolvers.vesselResolver
+        },
+
+        templateUrl: 'app/main/map/vessel/vessel.html',
+        controller: 'VesselController as vm',
+
+        onExit: function( SidePanelsService ) {
+          SidePanelsService.closeRightPanel();
+        }
+      } )
+
+      .state( 'main.map.vessel.defaultTab', {
+        url: '',
+        controller: function( $state ) {
+          $state.go( '^.activity' );
+        }
+      } );
+
+  }
+
+} )( this );

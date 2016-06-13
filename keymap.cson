@@ -1,0 +1,2 @@
+'.platform-linux':
+ 'shift-ctrl-A': 'tree-view:reveal-active-file'

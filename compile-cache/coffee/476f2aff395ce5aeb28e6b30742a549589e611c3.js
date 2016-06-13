@@ -1,0 +1,97 @@
+(function() {
+  var WSHandler, temp;
+
+  temp = require('temp');
+
+  module.exports = WSHandler = (function() {
+    function WSHandler(ws) {
+      this.ws = ws;
+      this.closed = false;
+      this.ws.on('message', (function(_this) {
+        return function(message) {
+          message = JSON.parse(message);
+          if (_this[message.type]) {
+            return _this[message.type](message.payload);
+          }
+        };
+      })(this));
+      this.ws.on('close', (function(_this) {
+        return function() {
+          _this.closed = true;
+          if (_this.changeSubscription) {
+            _this.changeSubscription.dispose();
+          }
+          if (_this.changeSubscription) {
+            return _this.destroySubscription.dispose();
+          }
+        };
+      })(this));
+    }
+
+    WSHandler.prototype.register = function(data) {
+      var filepath;
+      filepath = this.getFile(data);
+      return atom.workspace.open(filepath).then((function(_this) {
+        return function(editor) {
+          return _this.initEditor(editor, data);
+        };
+      })(this));
+    };
+
+    WSHandler.prototype.getFile = function(data) {
+      var extension, _ref;
+      extension = (_ref = data.extension) != null ? _ref : '.md';
+      return temp.path({
+        prefix: "" + data.title + "-",
+        suffix: extension
+      });
+    };
+
+    WSHandler.prototype.initEditor = function(editor, data) {
+      this.editor = editor;
+      this.updateText(data);
+      this.destroySubscription = this.editor.onDidDestroy((function(_this) {
+        return function() {
+          if (!_this.closed) {
+            return _this.ws.close();
+          }
+        };
+      })(this));
+      return this.changeSubscription = this.editor.onDidChange((function(_this) {
+        return function() {
+          if (!(_this.closed || _this.ignoreChanges)) {
+            _this.sendChanges();
+          }
+          return _this.ignoreChanges = false;
+        };
+      })(this));
+    };
+
+    WSHandler.prototype.sendChanges = function() {
+      var message;
+      message = {
+        type: 'updateText',
+        payload: {
+          text: this.editor.getBuffer().lines.join('\n')
+        }
+      };
+      return this.ws.send(JSON.stringify(message));
+    };
+
+    WSHandler.prototype.updateText = function(data) {
+      if (!(this.editor && this.editor.isAlive())) {
+        return;
+      }
+      this.ignoreChanges = true;
+      return this.editor.setText(data.text);
+    };
+
+    return WSHandler;
+
+  })();
+
+}).call(this);
+
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAiZmlsZSI6ICIiLAogICJzb3VyY2VSb290IjogIiIsCiAgInNvdXJjZXMiOiBbCiAgICAiL2hvbWUvd2lsbGlhbS8uYXRvbS9wYWNrYWdlcy9hdG9taWMtY2hyb21lL2xpYi93cy1oYW5kbGVyLmNvZmZlZSIKICBdLAogICJuYW1lcyI6IFtdLAogICJtYXBwaW5ncyI6ICJBQUFBO0FBQUEsTUFBQSxlQUFBOztBQUFBLEVBQUEsSUFBQSxHQUFPLE9BQUEsQ0FBUSxNQUFSLENBQVAsQ0FBQTs7QUFBQSxFQUVBLE1BQU0sQ0FBQyxPQUFQLEdBQXVCO0FBQ1IsSUFBQSxtQkFBRSxFQUFGLEdBQUE7QUFDWCxNQURZLElBQUMsQ0FBQSxLQUFBLEVBQ2IsQ0FBQTtBQUFBLE1BQUEsSUFBQyxDQUFBLE1BQUQsR0FBVSxLQUFWLENBQUE7QUFBQSxNQUNBLElBQUMsQ0FBQSxFQUFFLENBQUMsRUFBSixDQUFPLFNBQVAsRUFBa0IsQ0FBQSxTQUFBLEtBQUEsR0FBQTtlQUFBLFNBQUMsT0FBRCxHQUFBO0FBQ2hCLFVBQUEsT0FBQSxHQUFVLElBQUksQ0FBQyxLQUFMLENBQVcsT0FBWCxDQUFWLENBQUE7QUFDQSxVQUFBLElBQXVDLEtBQUssQ0FBQSxPQUFPLENBQUMsSUFBUixDQUE1QzttQkFBQSxLQUFLLENBQUEsT0FBTyxDQUFDLElBQVIsQ0FBTCxDQUFtQixPQUFPLENBQUMsT0FBM0IsRUFBQTtXQUZnQjtRQUFBLEVBQUE7TUFBQSxDQUFBLENBQUEsQ0FBQSxJQUFBLENBQWxCLENBREEsQ0FBQTtBQUFBLE1BSUEsSUFBQyxDQUFBLEVBQUUsQ0FBQyxFQUFKLENBQU8sT0FBUCxFQUFnQixDQUFBLFNBQUEsS0FBQSxHQUFBO2VBQUEsU0FBQSxHQUFBO0FBQ2QsVUFBQSxLQUFDLENBQUEsTUFBRCxHQUFVLElBQVYsQ0FBQTtBQUNBLFVBQUEsSUFBaUMsS0FBQyxDQUFBLGtCQUFsQztBQUFBLFlBQUEsS0FBQyxDQUFBLGtCQUFrQixDQUFDLE9BQXBCLENBQUEsQ0FBQSxDQUFBO1dBREE7QUFFQSxVQUFBLElBQWtDLEtBQUMsQ0FBQSxrQkFBbkM7bUJBQUEsS0FBQyxDQUFBLG1CQUFtQixDQUFDLE9BQXJCLENBQUEsRUFBQTtXQUhjO1FBQUEsRUFBQTtNQUFBLENBQUEsQ0FBQSxDQUFBLElBQUEsQ0FBaEIsQ0FKQSxDQURXO0lBQUEsQ0FBYjs7QUFBQSx3QkFVQSxRQUFBLEdBQVUsU0FBQyxJQUFELEdBQUE7QUFDUixVQUFBLFFBQUE7QUFBQSxNQUFBLFFBQUEsR0FBVyxJQUFDLENBQUEsT0FBRCxDQUFTLElBQVQsQ0FBWCxDQUFBO2FBQ0EsSUFBSSxDQUFDLFNBQVMsQ0FBQyxJQUFmLENBQW9CLFFBQXBCLENBQTZCLENBQUMsSUFBOUIsQ0FBbUMsQ0FBQSxTQUFBLEtBQUEsR0FBQTtlQUFBLFNBQUMsTUFBRCxHQUFBO2lCQUNqQyxLQUFDLENBQUEsVUFBRCxDQUFZLE1BQVosRUFBb0IsSUFBcEIsRUFEaUM7UUFBQSxFQUFBO01BQUEsQ0FBQSxDQUFBLENBQUEsSUFBQSxDQUFuQyxFQUZRO0lBQUEsQ0FWVixDQUFBOztBQUFBLHdCQWVBLE9BQUEsR0FBUyxTQUFDLElBQUQsR0FBQTtBQUNQLFVBQUEsZUFBQTtBQUFBLE1BQUEsU0FBQSw0Q0FBNkIsS0FBN0IsQ0FBQTthQUNBLElBQUksQ0FBQyxJQUFMLENBQVU7QUFBQSxRQUFDLE1BQUEsRUFBUSxFQUFBLEdBQUcsSUFBSSxDQUFDLEtBQVIsR0FBYyxHQUF2QjtBQUFBLFFBQTJCLE1BQUEsRUFBUSxTQUFuQztPQUFWLEVBRk87SUFBQSxDQWZULENBQUE7O0FBQUEsd0JBbUJBLFVBQUEsR0FBWSxTQUFDLE1BQUQsRUFBUyxJQUFULEdBQUE7QUFDVixNQUFBLElBQUMsQ0FBQSxNQUFELEdBQVUsTUFBVixDQUFBO0FBQUEsTUFDQSxJQUFDLENBQUEsVUFBRCxDQUFZLElBQVosQ0FEQSxDQUFBO0FBQUEsTUFFQSxJQUFDLENBQUEsbUJBQUQsR0FBdUIsSUFBQyxDQUFBLE1BQU0sQ0FBQyxZQUFSLENBQXFCLENBQUEsU0FBQSxLQUFBLEdBQUE7ZUFBQSxTQUFBLEdBQUE7QUFDMUMsVUFBQSxJQUFBLENBQUEsS0FBb0IsQ0FBQSxNQUFwQjttQkFBQSxLQUFDLENBQUEsRUFBRSxDQUFDLEtBQUosQ0FBQSxFQUFBO1dBRDBDO1FBQUEsRUFBQTtNQUFBLENBQUEsQ0FBQSxDQUFBLElBQUEsQ0FBckIsQ0FGdkIsQ0FBQTthQUlBLElBQUMsQ0FBQSxrQkFBRCxHQUFzQixJQUFDLENBQUEsTUFBTSxDQUFDLFdBQVIsQ0FBb0IsQ0FBQSxTQUFBLEtBQUEsR0FBQTtlQUFBLFNBQUEsR0FBQTtBQUN4QyxVQUFBLElBQUEsQ0FBQSxDQUFzQixLQUFDLENBQUEsTUFBRCxJQUFXLEtBQUMsQ0FBQSxhQUFsQyxDQUFBO0FBQUEsWUFBQSxLQUFDLENBQUEsV0FBRCxDQUFBLENBQUEsQ0FBQTtXQUFBO2lCQUNBLEtBQUMsQ0FBQSxhQUFELEdBQWlCLE1BRnVCO1FBQUEsRUFBQTtNQUFBLENBQUEsQ0FBQSxDQUFBLElBQUEsQ0FBcEIsRUFMWjtJQUFBLENBbkJaLENBQUE7O0FBQUEsd0JBNEJBLFdBQUEsR0FBYSxTQUFBLEdBQUE7QUFDWCxVQUFBLE9BQUE7QUFBQSxNQUFBLE9BQUEsR0FDRTtBQUFBLFFBQUEsSUFBQSxFQUFNLFlBQU47QUFBQSxRQUNBLE9BQUEsRUFDRTtBQUFBLFVBQUEsSUFBQSxFQUFNLElBQUMsQ0FBQSxNQUFNLENBQUMsU0FBUixDQUFBLENBQW1CLENBQUMsS0FBSyxDQUFDLElBQTFCLENBQStCLElBQS9CLENBQU47U0FGRjtPQURGLENBQUE7YUFJQSxJQUFDLENBQUEsRUFBRSxDQUFDLElBQUosQ0FBUyxJQUFJLENBQUMsU0FBTCxDQUFlLE9BQWYsQ0FBVCxFQUxXO0lBQUEsQ0E1QmIsQ0FBQTs7QUFBQSx3QkFtQ0EsVUFBQSxHQUFZLFNBQUMsSUFBRCxHQUFBO0FBQ1YsTUFBQSxJQUFBLENBQUEsQ0FBYyxJQUFDLENBQUEsTUFBRCxJQUFXLElBQUMsQ0FBQSxNQUFNLENBQUMsT0FBUixDQUFBLENBQXpCLENBQUE7QUFBQSxjQUFBLENBQUE7T0FBQTtBQUFBLE1BQ0EsSUFBQyxDQUFBLGFBQUQsR0FBaUIsSUFEakIsQ0FBQTthQUVBLElBQUMsQ0FBQSxNQUFNLENBQUMsT0FBUixDQUFnQixJQUFJLENBQUMsSUFBckIsRUFIVTtJQUFBLENBbkNaLENBQUE7O3FCQUFBOztNQUhGLENBQUE7QUFBQSIKfQ==
+
+//# sourceURL=/home/william/.atom/packages/atomic-chrome/lib/ws-handler.coffee
