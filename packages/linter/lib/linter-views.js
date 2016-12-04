@@ -16,7 +16,6 @@ export default class LinterViews {
     this.editors = editorRegistry
     this.bottomBar = null // To be added when status-bar service is consumed
     this.bubble = null
-    this.bubbleRange = null
 
     this.subscriptions.add(this.bottomPanel)
     this.subscriptions.add(this.bottomContainer)
@@ -74,26 +73,29 @@ export default class LinterViews {
       return
     }
     const point = editorLinter.editor.getCursorBufferPosition()
-    if (this.bubbleRange && this.bubbleRange.containsPoint(point)) {
+    if (this.bubble && editorLinter.messages.has(this.bubble.message) && this.bubble.range.containsPoint(point)) {
       return // The marker remains the same
     }
     this.removeBubble()
     for (let message of editorLinter.messages) {
       if (message.range && message.range.containsPoint(point)) {
-        this.bubbleRange = Range.fromObject([point, point])
-        this.bubble = editorLinter.editor.markBufferRange(this.bubbleRange, {invalidate: 'never'})
-        editorLinter.editor.decorateMarker(this.bubble, {
+        const range = Range.fromObject([point, point])
+        const marker = editorLinter.editor.markBufferRange(range, {invalidate: 'inside'})
+        this.bubble = {message, range, marker}
+        marker.onDidDestroy(() => {
+          this.bubble = null
+        })
+        editorLinter.editor.decorateMarker(marker, {
           type: 'overlay',
           item: createBubble(message)
         })
-        return
+        break
       }
     }
-    this.bubbleRange = null
   }
   removeBubble() {
     if (this.bubble) {
-      this.bubble.destroy()
+      this.bubble.marker.destroy()
       this.bubble = null
     }
   }
@@ -148,9 +150,6 @@ export default class LinterViews {
     if (this.bottomBar) {
       this.bottomBar.destroy()
     }
-    if (this.bubble) {
-      this.bubble.destroy()
-      this.bubbleRange = null
-    }
+    this.removeBubble()
   }
 }

@@ -1,0 +1,1 @@
+{"digest":"a8540f3a88c47023730e91df0f8be7322610c9e8","css":"nuclide-react-mount-root {\n  display: flex;\n  flex: 1;\n}\n","imports":[{"path":"static/variables/ui-variables.less","digest":"e3029f763111ec391f6dcea8178d35be7c798b4f"},{"path":"static/variables/syntax-variables.less","digest":"812c1b7883a023f768773d14294653adcdb932d7"}],"version":1}

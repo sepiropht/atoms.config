@@ -1,19 +1,19 @@
 (function() {
   var OutlineRenderer, RegionRenderer,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
 
   RegionRenderer = require('./region-renderer');
 
-  module.exports = OutlineRenderer = (function(_super) {
-    __extends(OutlineRenderer, _super);
+  module.exports = OutlineRenderer = (function(superClass) {
+    extend(OutlineRenderer, superClass);
 
     function OutlineRenderer() {
       return OutlineRenderer.__super__.constructor.apply(this, arguments);
     }
 
     OutlineRenderer.prototype.render = function(colorMarker) {
-      var color, range, region, regions, rowSpan, _i, _len;
+      var color, i, len, range, region, regions, rowSpan;
       range = colorMarker.getScreenRange();
       color = colorMarker.color;
       if (range.isEmpty() || (color == null)) {
@@ -21,8 +21,8 @@
       }
       rowSpan = range.end.row - range.start.row;
       regions = this.renderRegions(colorMarker);
-      for (_i = 0, _len = regions.length; _i < _len; _i++) {
-        region = regions[_i];
+      for (i = 0, len = regions.length; i < len; i++) {
+        region = regions[i];
         if (region != null) {
           this.styleRegion(region, color.toCSS());
         }
@@ -43,6 +43,4 @@
 
 }).call(this);
 
-//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAiZmlsZSI6ICIiLAogICJzb3VyY2VSb290IjogIiIsCiAgInNvdXJjZXMiOiBbCiAgICAiL2hvbWUvd2lsbGlhbS8uYXRvbS9wYWNrYWdlcy9waWdtZW50cy9saWIvcmVuZGVyZXJzL291dGxpbmUuY29mZmVlIgogIF0sCiAgIm5hbWVzIjogW10sCiAgIm1hcHBpbmdzIjogIkFBQUE7QUFBQSxNQUFBLCtCQUFBO0lBQUE7bVNBQUE7O0FBQUEsRUFBQSxjQUFBLEdBQWlCLE9BQUEsQ0FBUSxtQkFBUixDQUFqQixDQUFBOztBQUFBLEVBRUEsTUFBTSxDQUFDLE9BQVAsR0FDTTtBQUNKLHNDQUFBLENBQUE7Ozs7S0FBQTs7QUFBQSw4QkFBQSxNQUFBLEdBQVEsU0FBQyxXQUFELEdBQUE7QUFDTixVQUFBLGdEQUFBO0FBQUEsTUFBQSxLQUFBLEdBQVEsV0FBVyxDQUFDLGNBQVosQ0FBQSxDQUFSLENBQUE7QUFBQSxNQUNBLEtBQUEsR0FBUSxXQUFXLENBQUMsS0FEcEIsQ0FBQTtBQUVBLE1BQUEsSUFBYSxLQUFLLENBQUMsT0FBTixDQUFBLENBQUEsSUFBdUIsZUFBcEM7QUFBQSxlQUFPLEVBQVAsQ0FBQTtPQUZBO0FBQUEsTUFJQSxPQUFBLEdBQVUsS0FBSyxDQUFDLEdBQUcsQ0FBQyxHQUFWLEdBQWdCLEtBQUssQ0FBQyxLQUFLLENBQUMsR0FKdEMsQ0FBQTtBQUFBLE1BS0EsT0FBQSxHQUFVLElBQUMsQ0FBQSxhQUFELENBQWUsV0FBZixDQUxWLENBQUE7QUFPQSxXQUFBLDhDQUFBOzZCQUFBO1lBQStEO0FBQS9ELFVBQUEsSUFBQyxDQUFBLFdBQUQsQ0FBYSxNQUFiLEVBQXFCLEtBQUssQ0FBQyxLQUFOLENBQUEsQ0FBckIsQ0FBQTtTQUFBO0FBQUEsT0FQQTthQVFBO0FBQUEsUUFBQyxTQUFBLE9BQUQ7UUFUTTtJQUFBLENBQVIsQ0FBQTs7QUFBQSw4QkFXQSxXQUFBLEdBQWEsU0FBQyxNQUFELEVBQVMsS0FBVCxHQUFBO0FBQ1gsTUFBQSxNQUFNLENBQUMsU0FBUyxDQUFDLEdBQWpCLENBQXFCLFNBQXJCLENBQUEsQ0FBQTthQUNBLE1BQU0sQ0FBQyxLQUFLLENBQUMsV0FBYixHQUEyQixNQUZoQjtJQUFBLENBWGIsQ0FBQTs7MkJBQUE7O0tBRDRCLGVBSDlCLENBQUE7QUFBQSIKfQ==
-
-//# sourceURL=/home/william/.atom/packages/pigments/lib/renderers/outline.coffee
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiL2hvbWUvc2VwaXJvcGh0Ly5hdG9tL3BhY2thZ2VzL3BpZ21lbnRzL2xpYi9yZW5kZXJlcnMvb3V0bGluZS5jb2ZmZWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQSxNQUFBLCtCQUFBO0lBQUE7OztFQUFBLGNBQUEsR0FBaUIsT0FBQSxDQUFRLG1CQUFSOztFQUVqQixNQUFNLENBQUMsT0FBUCxHQUNNOzs7Ozs7OzhCQUNKLE1BQUEsR0FBUSxTQUFDLFdBQUQ7QUFDTixVQUFBO01BQUEsS0FBQSxHQUFRLFdBQVcsQ0FBQyxjQUFaLENBQUE7TUFDUixLQUFBLEdBQVEsV0FBVyxDQUFDO01BQ3BCLElBQWEsS0FBSyxDQUFDLE9BQU4sQ0FBQSxDQUFBLElBQXVCLGVBQXBDO0FBQUEsZUFBTyxHQUFQOztNQUVBLE9BQUEsR0FBVSxLQUFLLENBQUMsR0FBRyxDQUFDLEdBQVYsR0FBZ0IsS0FBSyxDQUFDLEtBQUssQ0FBQztNQUN0QyxPQUFBLEdBQVUsSUFBQyxDQUFBLGFBQUQsQ0FBZSxXQUFmO0FBRVYsV0FBQSx5Q0FBQTs7WUFBK0Q7VUFBL0QsSUFBQyxDQUFBLFdBQUQsQ0FBYSxNQUFiLEVBQXFCLEtBQUssQ0FBQyxLQUFOLENBQUEsQ0FBckI7O0FBQUE7YUFDQTtRQUFDLFNBQUEsT0FBRDs7SUFUTTs7OEJBV1IsV0FBQSxHQUFhLFNBQUMsTUFBRCxFQUFTLEtBQVQ7TUFDWCxNQUFNLENBQUMsU0FBUyxDQUFDLEdBQWpCLENBQXFCLFNBQXJCO2FBQ0EsTUFBTSxDQUFDLEtBQUssQ0FBQyxXQUFiLEdBQTJCO0lBRmhCOzs7O0tBWmU7QUFIOUIiLCJzb3VyY2VzQ29udGVudCI6WyJSZWdpb25SZW5kZXJlciA9IHJlcXVpcmUgJy4vcmVnaW9uLXJlbmRlcmVyJ1xuXG5tb2R1bGUuZXhwb3J0cyA9XG5jbGFzcyBPdXRsaW5lUmVuZGVyZXIgZXh0ZW5kcyBSZWdpb25SZW5kZXJlclxuICByZW5kZXI6IChjb2xvck1hcmtlcikgLT5cbiAgICByYW5nZSA9IGNvbG9yTWFya2VyLmdldFNjcmVlblJhbmdlKClcbiAgICBjb2xvciA9IGNvbG9yTWFya2VyLmNvbG9yXG4gICAgcmV0dXJuIHt9IGlmIHJhbmdlLmlzRW1wdHkoKSBvciBub3QgY29sb3I/XG5cbiAgICByb3dTcGFuID0gcmFuZ2UuZW5kLnJvdyAtIHJhbmdlLnN0YXJ0LnJvd1xuICAgIHJlZ2lvbnMgPSBAcmVuZGVyUmVnaW9ucyhjb2xvck1hcmtlcilcblxuICAgIEBzdHlsZVJlZ2lvbihyZWdpb24sIGNvbG9yLnRvQ1NTKCkpIGZvciByZWdpb24gaW4gcmVnaW9ucyB3aGVuIHJlZ2lvbj9cbiAgICB7cmVnaW9uc31cblxuICBzdHlsZVJlZ2lvbjogKHJlZ2lvbiwgY29sb3IpIC0+XG4gICAgcmVnaW9uLmNsYXNzTGlzdC5hZGQoJ291dGxpbmUnKVxuICAgIHJlZ2lvbi5zdHlsZS5ib3JkZXJDb2xvciA9IGNvbG9yXG4iXX0=

@@ -1,1 +1,0 @@
-{"context-menu":{"atom-text-editor":[{"label":"Toggle multirow-tabs","command":"multirow-tabs:toggle"}]},"menu":[{"label":"Packages","submenu":[{"label":"multirow-tabs","submenu":[{"label":"Toggle","command":"multirow-tabs:toggle"}]}]}]}

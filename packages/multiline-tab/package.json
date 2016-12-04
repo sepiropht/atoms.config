@@ -1,0 +1,63 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/tmp/d-116113-15667-y30od9/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/tmp/d-116113-15667-y30od9/package.tgz",
+        "spec": "/tmp/d-116113-15667-y30od9/package.tgz",
+        "type": "local"
+      },
+      "/tmp/apm-install-dir-116113-15667-1nxmvbg"
+    ]
+  ],
+  "_from": "../d-116113-15667-y30od9/package.tgz",
+  "_id": "multiline-tab@0.2.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/multiline-tab",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/tmp/d-116113-15667-y30od9/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/tmp/d-116113-15667-y30od9/package.tgz",
+    "spec": "/tmp/d-116113-15667-y30od9/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-116113-15667-y30od9/package.tgz",
+  "_shasum": "7843c7905c2f4f4a3f767811489eca7951fe0314",
+  "_shrinkwrap": null,
+  "_spec": "/tmp/d-116113-15667-y30od9/package.tgz",
+  "_where": "/tmp/apm-install-dir-116113-15667-1nxmvbg",
+  "bugs": {
+    "url": "https://github.com/tacamy/atom-multiline-tab/issues"
+  },
+  "dependencies": {},
+  "description": "When many tabs are opened, it will automatically wrap into multiple lines.",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">=1.0.0"
+  },
+  "homepage": "https://github.com/tacamy/atom-multiline-tab#readme",
+  "keywords": [
+    "tab",
+    "wrap"
+  ],
+  "license": "MIT",
+  "name": "multiline-tab",
+  "optionalDependencies": {},
+  "readme": "# multiline-tab\n\nWhen many tabs are opened, it will automatically wrap into multiple lines.\n\n![A screenshot of multiline-tab](https://raw.githubusercontent.com/tacamy/atom-multiline-tab/master/screenshot.png)\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tacamy/atom-multiline-tab.git"
+  },
+  "version": "0.2.0"
+}

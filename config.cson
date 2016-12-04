@@ -1,38 +1,53 @@
 "*":
   "atom-beautify":
     general:
-      _analyticsUserId: "46ad3485-74a7-454c-87fe-5db4b44c41db"
-    js:
-      end_with_comma: true
-      end_with_newline: true
-      indent_char: "2"
-      indent_level: 2
-      keep_array_indentation: true
-      keep_function_indentation: true
-      space_in_paren: true
+      _analyticsUserId: "6979a597-246e-4110-9ded-360784151002"
+  "autohide-tree-view":
+    showOn: "click"
+    showPinButton: false
   core:
     autoHideMenuBar: true
+    customFileTypes:
+      "source.ini": [
+        ".buckconfig"
+        ".hgrc"
+        ".flowconfig"
+      ]
+      "source.json": [
+        ".arcconfig"
+        "BUCK.autodeps"
+      ]
+      "source.python": [
+        "BUCK"
+      ]
     disabledPackages: [
-      "atomic-chrome"
+      "welcome"
+      "open-on-github"
     ]
+    telemetryConsent: "no"
     themes: [
       "seti-ui"
-      "gruvbox-syntax"
+      "monokai-seti"
     ]
   editor:
     fontSize: 16
-    invisibles: {}
+    showIndentGuide: true
+    showInvisibles: true
   "exception-reporting":
-    userId: "b90101c6-19fa-85e9-4743-15a164c94a51"
-  linter:
-    errorPanelHeight: 22
-  "linter-eslint": {}
-  minimap: {}
-  "split-diff":
-    diffWords: true
-    ignoreWhitespace: true
-    leftEditorColor: "red"
-    rightEditorColor: "green"
-    syncHorizontalScroll: true
+    userId: "66c4abf1-b2ec-66cc-8449-e52d41ea2573"
+  fonts:
+    fontFamily: "FiraCode"
+  "terminal-plus":
+    core: {}
+    style:
+      theme: "ocean"
+    toggles:
+      runInsertedText: false
+  "todo-show":
+    sortAscending: false
+    sortBy: "Path"
+  "tree-view":
+    alwaysOpenExisting: true
+    autoReveal: true
   welcome:
     showOnStartup: false

@@ -1,0 +1,1 @@
+{"context-menu":{"atom-text-editor":[{"label":"Toggle current-file-breadcrumb","command":"current-file-breadcrumb:toggle"}]},"menu":[{"label":"Packages","submenu":[{"label":"current-file-breadcrumb","submenu":[{"label":"Toggle","command":"current-file-breadcrumb:toggle"}]}]}]}

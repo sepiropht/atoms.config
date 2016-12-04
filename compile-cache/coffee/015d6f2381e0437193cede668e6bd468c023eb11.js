@@ -1,26 +1,26 @@
 (function() {
   var RegionRenderer, UnderlineRenderer,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
 
   RegionRenderer = require('./region-renderer');
 
-  module.exports = UnderlineRenderer = (function(_super) {
-    __extends(UnderlineRenderer, _super);
+  module.exports = UnderlineRenderer = (function(superClass) {
+    extend(UnderlineRenderer, superClass);
 
     function UnderlineRenderer() {
       return UnderlineRenderer.__super__.constructor.apply(this, arguments);
     }
 
     UnderlineRenderer.prototype.render = function(colorMarker) {
-      var color, region, regions, _i, _len;
+      var color, i, len, region, regions;
       color = colorMarker != null ? colorMarker.color : void 0;
       if (color == null) {
         return {};
       }
       regions = this.renderRegions(colorMarker);
-      for (_i = 0, _len = regions.length; _i < _len; _i++) {
-        region = regions[_i];
+      for (i = 0, len = regions.length; i < len; i++) {
+        region = regions[i];
         if (region != null) {
           this.styleRegion(region, color.toCSS());
         }
@@ -41,6 +41,4 @@
 
 }).call(this);
 
-//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAiZmlsZSI6ICIiLAogICJzb3VyY2VSb290IjogIiIsCiAgInNvdXJjZXMiOiBbCiAgICAiL2hvbWUvd2lsbGlhbS8uYXRvbS9wYWNrYWdlcy9waWdtZW50cy9saWIvcmVuZGVyZXJzL3VuZGVybGluZS5jb2ZmZWUiCiAgXSwKICAibmFtZXMiOiBbXSwKICAibWFwcGluZ3MiOiAiQUFBQTtBQUFBLE1BQUEsaUNBQUE7SUFBQTttU0FBQTs7QUFBQSxFQUFBLGNBQUEsR0FBaUIsT0FBQSxDQUFRLG1CQUFSLENBQWpCLENBQUE7O0FBQUEsRUFFQSxNQUFNLENBQUMsT0FBUCxHQUNNO0FBQ0osd0NBQUEsQ0FBQTs7OztLQUFBOztBQUFBLGdDQUFBLE1BQUEsR0FBUSxTQUFDLFdBQUQsR0FBQTtBQUNOLFVBQUEsZ0NBQUE7QUFBQSxNQUFBLEtBQUEseUJBQVEsV0FBVyxDQUFFLGNBQXJCLENBQUE7QUFDQSxNQUFBLElBQWlCLGFBQWpCO0FBQUEsZUFBTyxFQUFQLENBQUE7T0FEQTtBQUFBLE1BR0EsT0FBQSxHQUFVLElBQUMsQ0FBQSxhQUFELENBQWUsV0FBZixDQUhWLENBQUE7QUFLQSxXQUFBLDhDQUFBOzZCQUFBO1lBQStEO0FBQS9ELFVBQUEsSUFBQyxDQUFBLFdBQUQsQ0FBYSxNQUFiLEVBQXFCLEtBQUssQ0FBQyxLQUFOLENBQUEsQ0FBckIsQ0FBQTtTQUFBO0FBQUEsT0FMQTthQU1BO0FBQUEsUUFBQyxTQUFBLE9BQUQ7UUFQTTtJQUFBLENBQVIsQ0FBQTs7QUFBQSxnQ0FTQSxXQUFBLEdBQWEsU0FBQyxNQUFELEVBQVMsS0FBVCxHQUFBO0FBQ1gsTUFBQSxNQUFNLENBQUMsU0FBUyxDQUFDLEdBQWpCLENBQXFCLFdBQXJCLENBQUEsQ0FBQTthQUVBLE1BQU0sQ0FBQyxLQUFLLENBQUMsZUFBYixHQUErQixNQUhwQjtJQUFBLENBVGIsQ0FBQTs7NkJBQUE7O0tBRDhCLGVBSGhDLENBQUE7QUFBQSIKfQ==
-
-//# sourceURL=/home/william/.atom/packages/pigments/lib/renderers/underline.coffee
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiL2hvbWUvc2VwaXJvcGh0Ly5hdG9tL3BhY2thZ2VzL3BpZ21lbnRzL2xpYi9yZW5kZXJlcnMvdW5kZXJsaW5lLmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQUFBLE1BQUEsaUNBQUE7SUFBQTs7O0VBQUEsY0FBQSxHQUFpQixPQUFBLENBQVEsbUJBQVI7O0VBRWpCLE1BQU0sQ0FBQyxPQUFQLEdBQ007Ozs7Ozs7Z0NBQ0osTUFBQSxHQUFRLFNBQUMsV0FBRDtBQUNOLFVBQUE7TUFBQSxLQUFBLHlCQUFRLFdBQVcsQ0FBRTtNQUNyQixJQUFpQixhQUFqQjtBQUFBLGVBQU8sR0FBUDs7TUFFQSxPQUFBLEdBQVUsSUFBQyxDQUFBLGFBQUQsQ0FBZSxXQUFmO0FBRVYsV0FBQSx5Q0FBQTs7WUFBK0Q7VUFBL0QsSUFBQyxDQUFBLFdBQUQsQ0FBYSxNQUFiLEVBQXFCLEtBQUssQ0FBQyxLQUFOLENBQUEsQ0FBckI7O0FBQUE7YUFDQTtRQUFDLFNBQUEsT0FBRDs7SUFQTTs7Z0NBU1IsV0FBQSxHQUFhLFNBQUMsTUFBRCxFQUFTLEtBQVQ7TUFDWCxNQUFNLENBQUMsU0FBUyxDQUFDLEdBQWpCLENBQXFCLFdBQXJCO2FBRUEsTUFBTSxDQUFDLEtBQUssQ0FBQyxlQUFiLEdBQStCO0lBSHBCOzs7O0tBVmlCO0FBSGhDIiwic291cmNlc0NvbnRlbnQiOlsiUmVnaW9uUmVuZGVyZXIgPSByZXF1aXJlICcuL3JlZ2lvbi1yZW5kZXJlcidcblxubW9kdWxlLmV4cG9ydHMgPVxuY2xhc3MgVW5kZXJsaW5lUmVuZGVyZXIgZXh0ZW5kcyBSZWdpb25SZW5kZXJlclxuICByZW5kZXI6IChjb2xvck1hcmtlcikgLT5cbiAgICBjb2xvciA9IGNvbG9yTWFya2VyPy5jb2xvclxuICAgIHJldHVybiB7fSB1bmxlc3MgY29sb3I/XG5cbiAgICByZWdpb25zID0gQHJlbmRlclJlZ2lvbnMoY29sb3JNYXJrZXIpXG5cbiAgICBAc3R5bGVSZWdpb24ocmVnaW9uLCBjb2xvci50b0NTUygpKSBmb3IgcmVnaW9uIGluIHJlZ2lvbnMgd2hlbiByZWdpb24/XG4gICAge3JlZ2lvbnN9XG5cbiAgc3R5bGVSZWdpb246IChyZWdpb24sIGNvbG9yKSAtPlxuICAgIHJlZ2lvbi5jbGFzc0xpc3QuYWRkKCd1bmRlcmxpbmUnKVxuXG4gICAgcmVnaW9uLnN0eWxlLmJhY2tncm91bmRDb2xvciA9IGNvbG9yXG4iXX0=

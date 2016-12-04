@@ -1,2 +1,5 @@
-'.platform-linux':
- 'shift-ctrl-A': 'tree-view:reveal-active-file'
+'atom-workspace atom-text-editor:not([mini])':
+  'ctrl-:': 'editor:toggle-line-comments'
+
+'.platform-win32, .platform-linux':
+  'ctrl-,': 'tree-view:toggle'

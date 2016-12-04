@@ -1,0 +1,70 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/tmp/d-116113-29704-1tnkiob/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/tmp/d-116113-29704-1tnkiob/package.tgz",
+        "spec": "/tmp/d-116113-29704-1tnkiob/package.tgz",
+        "type": "local"
+      },
+      "/tmp/apm-install-dir-116113-29704-mtlz93"
+    ]
+  ],
+  "_from": "../d-116113-29704-1tnkiob/package.tgz",
+  "_id": "autocomplete-ionic2-framework@0.3.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/autocomplete-ionic2-framework",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/tmp/d-116113-29704-1tnkiob/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/tmp/d-116113-29704-1tnkiob/package.tgz",
+    "spec": "/tmp/d-116113-29704-1tnkiob/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-116113-29704-1tnkiob/package.tgz",
+  "_shasum": "7785b150f7f65dc930fe096ca8ca764188a12e22",
+  "_shrinkwrap": null,
+  "_spec": "/tmp/d-116113-29704-1tnkiob/package.tgz",
+  "_where": "/tmp/apm-install-dir-116113-29704-mtlz93",
+  "bugs": {
+    "url": "https://github.com/DenysYefimenko/autocomplete-ionic-framework/issues"
+  },
+  "dependencies": {},
+  "description": "Ionic2 Framework element and attribute autocompletions",
+  "devDependencies": {
+    "coffeelint": "^1.9.7",
+    "request": "^2.53.0"
+  },
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "homepage": "https://github.com/DenysYefimenko/autocomplete-ionic-framework#readme",
+  "license": "MIT",
+  "main": "./lib/main",
+  "name": "autocomplete-ionic2-framework",
+  "optionalDependencies": {},
+  "providedServices": {
+    "autocomplete.provider": {
+      "versions": {
+        "2.0.0": "getProvider"
+      }
+    }
+  },
+  "readme": "# Ionic2 Framework Autocomplete Package\n\n[Ionic2 Framework](http://ionicframework.com/) tag and attribute autocompletions in Atom. Install\n[autocomplete-plus](https://github.com/atom-community/autocomplete-plus) before\ninstalling this package.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DenysYefimenko/autocomplete-ionic-framework.git"
+  },
+  "version": "0.3.2"
+}

@@ -1,0 +1,150 @@
+{
+	"tags": {
+		"button": {
+			"attributes": ["outline", "clear", "round", "block", "full", "small", "large", "disabled", "fab", "fab-left", "fab-right", "fab-center", "fab-top", "fab-bottom"]
+		},
+		"ion-avatar": {},
+		"ion-badge": {},
+		"ion-buttons": {
+			"attributes": ["start", "end"]
+		},
+		"ion-card": {},
+		"ion-card-header": {},
+		"ion-card-content": {},
+		"ion-checkbox": {
+			"attributes": ["checked", "value", "disabled"]
+		},
+		"ion-chip": {},
+		"ion-content": {},
+		"ion-col": {
+			"attributes": ["width-10", "width-20", "width-25", "width-33", "width-50", "width-67", "width-75", "width-80", "width-90", "offset-"]
+		},
+		"ion-row": {
+			"attributes": ["baseline", "center"]
+		},
+		"ion-icon": {
+			"attributes": ["name", "ios", "md", "isActive"]
+		},
+		"icon": {
+			"attributes": ["name", "ios", "md", "isActive"]
+		},
+		"ion-input": {
+			"attributes": ["type", "clearInput", "placeholder"]
+		},
+		"ion-textarea": {
+		},
+		"ion-item": {
+		},
+		"ion-item-sliding": {
+		},
+		"ion-item-options": {
+		},
+		"ion-label": {
+			"attributes": ["fixed", "floating", "stacked"]
+		},
+		"ion-list": {
+			"attributes": ["inset", "radio-group"]
+		},
+		"ion-list-header": {},
+		"ion-menu": {
+			"attributes": ["content", "type", "side", "id"]
+		},
+		"ion-nav": {
+			"attributes": ["root", "swipe-back-enabled"]
+		},
+		"ion-navbar": {},
+		"ion-title": {},
+		"ion-option": {
+			"attributes": ["value", "checked"]
+		},
+		"ion-radio": {
+			"attributes": ["value", "checked", "disabled"]
+		},
+		"ion-scroll": {
+			"attributes": ["scrollX", "scrollY", "zoom", "maxZoom"]
+		},
+		"ion-refresher": {
+			"attributes": ["starting", "refresh", "pulling", "pullingIcon", "pullingText", "refreshingIcon", "refreshingText"]
+		},
+		"ion-searchbar": {
+			"attributes": ["cancelButtonText", "hideCancelButton", "placeholder", "input", "keydown", "keypress", "keyup", "blur", "focus", "cancel", "clear"]
+		},
+		"ion-segment": {
+			"attributes": ["change"]
+		},
+		"ion-segment-button": {
+			"attributes": ["value", "select"]
+		},
+		"ion-select": {
+			"attributes": ["cancelText", "okText", "alertOptions", "multiple", "disabled", "change"]
+		},
+		"ion-slide": {
+		},
+		"ion-slides": {
+			"attributes": ["autoplay", "loop", "index", "bounce", "pager", "options", "zoom", "zoomDuration", "zoomMax", "change"]
+		},
+		"ion-tab": {
+			"attributes": ["root", "tabTitle", "tabIcon", "tabBadge", "tabBadgeStyle", "select"]
+		},
+		"ion-tabs": {
+			"attributes": ["selectedIndex", "tabbarPlacement", "tabbarIcons", "preloadTabs", "change"]
+		},
+		"ion-thumbnail": {
+		},
+		"ion-toggle": {
+			"attributes": ["value", "checked", "disabled", "id"]
+		},
+		"ion-switch": {
+			"attributes": ["value", "checked", "disabled", "id"]
+		},
+		"ion-toolbar": {
+			"attributes": ["position"]
+		}
+	},
+	"attributes": {
+		"primary": {},
+		"secondary": {},
+		"danger": {},
+		"light": {},
+		"dark": {},
+		"button": {
+			"global": "true"
+		},
+		"ion-item": {
+			"global": "true"
+		},
+		"menuClose": {
+			"global": "true",
+			"attribOption": ["right", "left"]
+		},
+		"menuToggle": {
+			"global": "true",
+			"attribOption": ["right", "left"]
+		},
+		"navPush": {
+			"global": "true"
+		},
+		"showWhen": {
+			"global": "true",
+			"attribOption": ["ios", "android"]
+		},
+		"hideWhen": {
+			"global": "true",
+			"attribOption": ["ios", "android"]
+		},
+		"tabbarIcons": {
+			"attribOption": ["bottom", "left", "right"]
+		},
+		"tabbarPlacement": {
+			"global": "true",
+			"attribOption": ["top", "bottom"]
+		},
+		"showWhen": {
+			"global": "true",
+			"attribOption": ["ios", "android"]
+		},
+		"id": {
+			"global": "true"
+		}
+	}
+}

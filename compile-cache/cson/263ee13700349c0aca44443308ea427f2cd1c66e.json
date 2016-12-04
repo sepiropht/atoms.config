@@ -1,0 +1,1 @@
+{"context-menu":{"atom-text-editor":[{"label":"Toggle typescript-import","command":"typescript-import:toggle"},{"label":"Insert Module","command":"typescript-import:insert"}]},"menu":[{"label":"Packages","submenu":[{"label":"typescript-import","submenu":[{"label":"Toggle","command":"typescript-import:toggle"}]}]}]}
